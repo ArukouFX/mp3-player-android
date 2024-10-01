@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Título de la canción -->
+    <TextView
+        android:id="@+id/song_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Autor de la canción -->
+    <TextView
+        android:id="@+id/song_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Song Author"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/song_title" />
+
+    <!-- Botón de anterior -->
+    <ImageButton
+        android:id="@+id/btn_previous"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Previous"
+        android:src="@android:drawable/ic_media_previous"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_stop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón de detener -->
+    <ImageButton
+        android:id="@+id/btn_stop"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Stop"
+        android:src="@drawable/stop_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_previous"
+        app:layout_constraintEnd_toStartOf="@+id/btn_play"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón de reproducir -->
+    <ImageButton
+        android:id="@+id/btn_play"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Play"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_stop"
+        app:layout_constraintEnd_toStartOf="@+id/btn_pause"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón de pausa -->
+    <ImageButton
+        android:id="@+id/btn_pause"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Pause"
+        android:src="@android:drawable/ic_media_pause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_next"
+        app:layout_constraintStart_toEndOf="@+id/btn_play"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón de siguiente -->
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Next"
+        android:src="@android:drawable/ic_media_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_pause"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
