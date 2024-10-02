@@ -86,13 +86,29 @@ public class MusicService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String action = intent.getAction();
+        if ("PLAY".equals(action)) {
+            int newSongIndex = intent.getIntExtra("song_index", -1);
+            if (newSongIndex != currentSongIndex) {
+                // Si es una nueva canción, actualiza el índice y reproduce
+                currentSongIndex = newSongIndex;
+                playMusic();
+            }
+        }
+
         if (intent != null) {
             List<Song> receivedSongList = (List<Song>) intent.getSerializableExtra("song_list");
             if (receivedSongList != null && !receivedSongList.isEmpty()) {
                 songList = receivedSongList;  // Actualiza la lista de canciones en el servicio
             }
 
-            String action = intent.getAction();
+            if ("SET_SONG_INDEX".equals(action)) {
+                if (intent.hasExtra("song_index")) {
+                    int newSongIndex = intent.getIntExtra("song_index", currentSongIndex);
+                    setCurrentSongIndex(newSongIndex); // Llama al método para actualizar el índice
+                }
+            }
+
             if (action != null && songList != null) {  // Asegúrate de que `songList` no sea null
                 switch (action) {
                     case "PLAY":
@@ -101,6 +117,7 @@ public class MusicService extends Service {
                                 currentSongIndex = intent.getIntExtra("song_index", currentSongIndex);
                             }
                             playMusic();
+                            Log.d("MusicService", "(PLAY) El ID de la canción ha cambiado a: " + currentSongIndex);
                         }
                         break;
                     case "PAUSE":
@@ -132,6 +149,14 @@ public class MusicService extends Service {
             }
         }
         return START_STICKY;
+    }
+
+    public void setCurrentSongIndex(int index) {
+        if (index < 0 || index >= songList.size()) return; // Verifica que el índice esté en el rango válido
+        if (currentSongIndex != index) { // Solo actualiza si es un cambio
+            currentSongIndex = index; // Actualiza el índice
+            playMusic(); // Reproduce la nueva canción
+        }
     }
 
 
